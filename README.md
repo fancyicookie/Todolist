@@ -1,6 +1,11 @@
 # todolist
 
+check the [demo](https://fancyicookie.github.io/Todolist/)
+
+This is a simple demo.
+
 ## Project setup
+
 ```
 npm install
 ```
