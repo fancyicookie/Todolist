@@ -26,16 +26,12 @@ export default {
   },
   data() {
       return {
-        todos: [
-          { id: '001', title: '吃饭', done: true},
-          { id: '002', title: '睡觉', done: false},
-          { id: '003', title: '学习', done: true},
-        ]
+        todos: JSON.parse(localStorage.getItem('todos')) || []
       }
     },
     // 在js中，函数也是对象，传函数本身实际上是引用传递，意思是他们用的是同一块内存空间，一方修改，另一方也会改变
     // 父组件APP传递了一个函数给子组件MyHeader
-    methods: {
+  methods: {
     addTodo(todoObj){
       // console.log(x);
       this.todos.unshift(todoObj)
@@ -65,6 +61,15 @@ export default {
       })
     }
 
+  },
+  watch: {
+    todos: {
+      deep: true,
+      // localStorage.setItem('todos', JSON.stringify(value)) // bug 监测不到数组里面的变化
+      handler(value) {
+        localStorage.setItem('todos', JSON.stringify(value))
+      }
+    }
   }
 }
 </script>
